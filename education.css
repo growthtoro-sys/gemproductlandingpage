@@ -119,3 +119,27 @@ em{font-style:italic;color:var(--mint)}
  .ribbon{font-size:11px}.ribbon span{padding:11px 20px}
 }
 .hdr{z-index:30}
+
+/* ---- real products ---- */
+.row-title.first{margin-top:28px}
+.tag-l{font:italic 500 clamp(20px,2.6vw,26px)/1.2 var(--serif);color:var(--mint)}
+.kind .badge{font-style:normal;background:var(--mint);color:var(--ink);border-radius:999px;padding:3px 10px;margin-left:8px;letter-spacing:.1em;font-size:10px}
+.inc-t{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin-top:6px}
+#featured{display:grid;gap:22px}
+.card-prem{border-color:var(--mint);box-shadow:0 0 0 1px rgba(144,229,211,.25),0 30px 70px -40px rgba(144,229,211,.6)}
+.card-prem .cv{background:radial-gradient(circle at 85% 8%,rgba(144,229,211,.6),transparent 40%),radial-gradient(circle at 10% 95%,rgba(144,229,211,.4),transparent 45%),#050707}
+.more{border:1px solid var(--line);border-radius:14px;padding:0 16px;margin:6px 0}
+.more summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:14px;color:var(--mint);list-style:none;display:flex;justify-content:space-between;min-height:48px;align-items:center}
+.more summary::-webkit-details-marker{display:none}.more summary::after{content:"+";font-size:20px;transition:transform .25s}
+.more[open] summary::after{transform:rotate(45deg)}
+.more dl{padding:0 0 14px;display:grid;gap:12px}.more dt{font-weight:700;font-size:14px}.more dd{font-size:14px;opacity:.75;margin:2px 0 0}
+.btn.is-off{flex-direction:column;gap:2px;padding:10px 20px}.btn.is-off small{font-size:11px;font-weight:500;opacity:.7}
+.quick a b{color:var(--mint);font-weight:700}.quick a:hover b{color:var(--ink)}
+.grid{grid-template-columns:1fr}
+@media(min-width:760px){
+ .grid{grid-template-columns:repeat(2,1fr)}
+ .card-prem{grid-template-columns:1fr 300px}.card-prem .book{order:2}
+ .grid .card{grid-template-columns:150px 1fr;grid-template-rows:auto;align-items:center}
+ .grid .book{max-width:150px}
+}
+@media(max-width:759px){.quick a{display:flex;flex-direction:column;gap:2px}}

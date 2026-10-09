@@ -1,6 +1,7 @@
 (function () {
   var P = (window.EDU_CONFIG || {}).products || [];
-  var feat = document.getElementById("featured"), grid = document.getElementById("grid");
+  var R = (window.EDU_CONFIG || {}).resources || {};
+  var top = document.getElementById("featured"), grid = document.getElementById("grid");
   var GEM = '<svg viewBox="0 0 64 56" aria-hidden="true"><path d="M16 4h32l14 16-30 34L2 20z M2 20h60M22 20l10 34 10-34M16 4l6 16M48 4l-6 16M32 4l-10 16M32 4l10 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -9,27 +10,27 @@
     return '<div class="cv"><span class="cv-g">' + GEM + '</span><small>Hidden Gem</small><b>' + esc(p.name) + '</b><i></i><small>' + esc(p.kind) + '</small></div>';
   }
   function btn(p) {
-    var a = p.checkout
+    return p.checkout
       ? '<a class="btn btn-mint" href="' + esc(p.checkout) + '" target="_blank" rel="noopener">' + esc(p.cta) + '</a>'
-      : '<a class="btn btn-mint is-off" aria-disabled="true">Checkout link coming soon</a>';
-    return a;
+      : '<a class="btn btn-mint is-off" aria-disabled="true">' + esc(p.cta) + '<small>Checkout link coming soon</small></a>';
   }
   function card(p) {
-    var el = document.createElement("article");
-    el.id = p.id; el.className = "card reveal" + (p.featured ? " card-feat" : "");
+    var big = p.tier !== "small", el = document.createElement("article");
+    el.id = p.id; el.className = "card reveal" + (big ? " card-feat" : "") + (p.tier === "premium" ? " card-prem" : "");
+    var res = (p.resources || []).filter(function (k) { return R[k]; });
     el.innerHTML =
       '<div class="book">' + cover(p) + '</div>' +
-      '<div class="info"><span class="kind">' + esc(p.kind) + (p.featured ? ' · Most popular' : '') + '</span>' +
-      '<h3>' + esc(p.name) + '</h3><p class="bl">' + esc(p.blurb) + '</p>' +
-      (p.includes ? '<ul>' + p.includes.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join("") + '</ul>' : '') +
-      '<div class="buyrow"><div class="pr"><sup>$</sup>' + esc(p.price) + '</div>' + btn(p) + '</div>' +
-      (p.note ? '<p class="note">' + esc(p.note) + '</p>' : '') + '</div>';
+      '<div class="info"><span class="kind">' + esc(p.kind) + (p.badge ? ' <em class="badge">' + esc(p.badge) + '</em>' : '') + '</span>' +
+      '<h3>' + esc(p.name) + '</h3><p class="tag-l">' + esc(p.tagline) + '</p><p class="bl">' + esc(p.blurb) + '</p>' +
+      (p.includes ? '<p class="inc-t">Your mentorship includes</p><ul>' + p.includes.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join("") + '</ul>' : '') +
+      (res.length ? '<details class="more"><summary>What each resource is</summary><dl>' + res.map(function (k) { return '<dt>' + esc(R[k].name) + '</dt><dd>' + esc(R[k].d) + '</dd>'; }).join("") + '</dl></details>' : '') +
+      '<div class="buyrow"><div class="pr"><sup>$</sup>' + esc(p.price) + '</div>' + btn(p) + '</div></div>';
     return el;
   }
   var nav = document.getElementById("quick");
   P.forEach(function (p) {
-    (p.featured ? feat : grid).append(card(p));
-    var a = document.createElement("a"); a.href = "#" + p.id; a.textContent = p.name + " · $" + p.price; nav.append(a);
+    (p.tier === "small" ? grid : top).append(card(p));
+    var a = document.createElement("a"); a.href = "#" + p.id; a.innerHTML = esc(p.name) + ' <b>$' + esc(p.price) + '</b>'; nav.append(a);
   });
 
   var io = "IntersectionObserver" in window && new IntersectionObserver(function (es) {
