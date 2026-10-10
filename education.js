@@ -16,7 +16,7 @@
   function book(p) { return '<div class="book"><div class="bk">' + cover(p) + '<span class="sheen"></span></div></div>'; }
   function video(p) {
     return '<div class="vid" role="img" aria-label="Webinar recording preview: ' + esc(p.name) + '">' +
-      '<div class="vid-top"><span class="rec"><i></i>Recording</span><span class="hd">HD</span></div>' +
+      '<div class="vid-top"><span class="rec"><i></i>Recording</span><img class="vid-logo" src="assets/logo2.png" alt="Hidden Gem" width="34" height="36"><span class="hd">HD</span></div>' +
       '<div class="vid-mid"><span class="vid-brand">Hidden Gem presents</span><b>The Custom <em>Lash</em> Blueprint</b><span class="vid-sub">Webinar replay</span>' +
       '<span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></div>' +
       '<div class="vid-bar"><svg viewBox="0 0 24 24" class="vp"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span class="trk"><i></i></span><span class="lock">48-hour access</span></div>' +

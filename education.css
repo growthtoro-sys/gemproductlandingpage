@@ -204,3 +204,6 @@ em{font-style:italic;color:var(--mint)}
 .fan .fc .cv{padding-top:10%}
 .book .cv .cv-logo{width:clamp(40px,24%,56px);height:auto;object-fit:contain}
 .fan .fc .cv .cv-logo{width:24px}
+
+.vid-top{align-items:center}
+.vid-logo{position:absolute;left:50%;top:8px;transform:translateX(-50%);width:36px;height:auto;filter:drop-shadow(0 0 10px rgba(144,229,211,.6))}
