@@ -7,7 +7,20 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
   function cover(p) {
     if (p.cover) return '<img src="' + esc(p.cover) + '" alt="' + esc(p.name) + ' cover" loading="lazy">';
-    return '<div class="cv"><span class="cv-g">' + GEM + '</span><small>Hidden Gem</small><b>' + esc(p.name) + '</b><i></i><small>' + esc(p.kind) + '</small></div>';
+    var w = p.name.split(" "), last = w.pop(), first = w.join(" ");
+    return '<div class="cv"><i class="sp s1"></i><i class="sp s2"></i><i class="sp s3"></i>' +
+      '<span class="cv-g">' + GEM + '</span><small class="brand">Hidden Gem</small>' +
+      '<span class="t1">' + esc(first) + '</span><span class="t2">' + esc(last) + '</span>' +
+      '<i class="rule"></i><small class="sub">' + esc(p.kind.split(" · ")[0]) + '</small></div>';
+  }
+  function book(p) { return '<div class="book"><div class="bk">' + cover(p) + '<span class="sheen"></span></div></div>'; }
+  function video(p) {
+    return '<div class="vid" role="img" aria-label="Webinar recording preview: ' + esc(p.name) + '">' +
+      '<div class="vid-top"><span class="rec"><i></i>Recording</span><span class="hd">HD</span></div>' +
+      '<div class="vid-mid"><span class="vid-brand">Hidden Gem presents</span><b>The Custom <em>Lash</em> Blueprint</b><span class="vid-sub">Webinar replay</span>' +
+      '<span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></div>' +
+      '<div class="vid-bar"><svg viewBox="0 0 24 24" class="vp"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span class="trk"><i></i></span><span class="lock">48-hour access</span></div>' +
+      '<i class="sp s1"></i><i class="sp s2"></i></div>';
   }
   function btn(p) {
     return p.checkout
@@ -16,10 +29,10 @@
   }
   function card(p) {
     var big = p.tier !== "small", el = document.createElement("article");
-    el.id = p.id; el.className = "card reveal" + (big ? " card-feat" : "") + (p.tier === "premium" ? " card-prem" : "");
+    el.id = p.id; el.className = "card reveal" + (p.media === "video" ? " card-vid" : "") + (big ? " card-feat" : "") + (p.tier === "premium" ? " card-prem" : "");
     var res = (p.resources || []).filter(function (k) { return R[k]; });
     el.innerHTML =
-      '<div class="book">' + cover(p) + '</div>' +
+      (p.media === 'video' ? video(p) : book(p)) +
       '<div class="info"><span class="kind">' + esc(p.kind) + (p.badge ? ' <em class="badge">' + esc(p.badge) + '</em>' : '') + '</span>' +
       '<h3>' + esc(p.name) + '</h3><p class="tag-l">' + esc(p.tagline) + '</p><p class="bl">' + esc(p.blurb) + '</p>' +
       (p.includes ? '<p class="inc-t">Your mentorship includes</p><ul>' + p.includes.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join("") + '</ul>' : '') +

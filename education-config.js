@@ -38,7 +38,7 @@ window.EDU_CONFIG = {
       blurb: "Ready to move beyond copying inspiration photos? Gem’s Custom Lash Ebook introduces her approach to intentional custom styling, helping you think about the client in front of you and the result you want to create. A starting point for artists who want to explore Gem’s approach before joining a mentorship.",
       cta: "Get the Custom Ebook — $69.99", checkout: null },
 
-    { id: "replay", tier: "small", kind: "Webinar replay · 48-hour access",
+    { id: "replay", tier: "small", media: "video", kind: "Webinar replay · 48-hour access",
       name: "Webinar Replay", price: "9.99",
       tagline: "Missed the training? Let’s run it back.",
       blurb: "Watch The Custom Lash Blueprint webinar with 48-hour access. Revisit Gem’s teaching before choosing your next step.",
