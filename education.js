@@ -9,7 +9,7 @@
     if (p.cover) return '<img src="' + esc(p.cover) + '" alt="' + esc(p.name) + ' cover" loading="lazy">';
     var w = p.name.split(" "), last = w.pop(), first = w.join(" ");
     return '<div class="cv"><i class="sp s1"></i><i class="sp s2"></i><i class="sp s3"></i>' +
-      '<span class="cv-g">' + GEM + '</span><small class="brand">Hidden Gem</small>' +
+      '<img class="cv-logo" src="assets/logo2.png" alt="Hidden Gem" width="60" height="62"><small class="brand">Hidden Gem</small>' +
       '<span class="t1">' + esc(first) + '</span><span class="t2">' + esc(last) + '</span>' +
       '<i class="rule"></i><small class="sub">' + esc(p.kind.split(" · ")[0]) + '</small></div>';
   }

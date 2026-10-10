@@ -198,3 +198,9 @@ em{font-style:italic;color:var(--mint)}
 .vid .s1{top:24%;right:20%}.vid .s2{bottom:30%;left:14%}
 @media(min-width:760px){.grid .card-vid{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:stretch}}
 @media(prefers-reduced-motion:reduce){.rec i,.play::after,.trk i,.sp{animation:none}.trk i{width:35%}}
+
+.cv-logo{width:clamp(44px,28%,64px);height:auto;margin-top:2px;filter:drop-shadow(0 0 10px rgba(144,229,211,.55))}
+.fan .fc .cv-logo{display:block;width:26px}
+.fan .fc .cv{padding-top:10%}
+.book .cv .cv-logo{width:clamp(40px,24%,56px);height:auto;object-fit:contain}
+.fan .fc .cv .cv-logo{width:24px}
